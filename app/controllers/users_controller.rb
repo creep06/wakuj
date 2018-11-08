@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 			# 即ログインする
 			log_in @user
 			# flashを表示
-			flash[:success] = "☺️Welcome to the Hartl World☺️"
+			flash[:success] = "ようこそ！"
 			# redirect_to user_url(@user) と等価
 			redirect_to @user
 		else
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 		if @user.update_attributes(user_params)
-			flash[:success] = "🤠Profile updated🤠"
+			flash[:success] = "更新されました"
 			redirect_to @user
 		else
 			# 失敗したら編集ページをレンダリング
@@ -47,8 +47,10 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		User.find(params[:id]).destroy
-		flash[:success] = "User deleted"
+		deleted_user = User.find(params[:id])
+		deleted_user_name = deleted_user.name
+		deleted_user.destroy
+		flash[:success] = "${deleted_user_name}を削除完了"
 		redirect_to users_url
 	end
 
