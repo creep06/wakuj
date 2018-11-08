@@ -1,19 +1,24 @@
 source 'https://rubygems.org'
 
 gem 'rails'
+gem 'bcrypt'
+gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+gem 'bootstrap-sass'
+gem 'rails-controller-testing'
 gem 'puma'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
-gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
-# rails5.2から必須になったgem
+gem 'jquery-rails'
 gem 'bootsnap'
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'byebug', platform: :mri
+  gem 'sqlite3'
 end
 
 group :development do
@@ -24,16 +29,14 @@ group :development do
 end
 
 group :test do
-  gem 'rails-controller-testing'
-  gem 'minitest'
-  gem 'minitest-reporters'
-  gem 'guard'
-  gem 'guard-minitest'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 group :production do
 	gem 'pg'
 end
 
-# Windows環境
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
