@@ -4,10 +4,12 @@ gem 'rails'
 gem 'puma'
 gem 'sass-rails'
 gem 'uglifier'
-gem 'coffee-rails', '4.2.2'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
+# rails5.2から必須になったgem
+gem 'bootsnap'
 
 group :development, :test do
   gem 'sqlite3'
