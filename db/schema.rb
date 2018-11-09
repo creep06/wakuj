@@ -10,7 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_03_203215) do
+ActiveRecord::Schema.define(version: 2018_11_09_044039) do
+
+  create_table "accepteds", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "problems", force: :cascade do |t|
+    t.string "name"
+    t.text "statement"
+    t.integer "point"
+    t.integer "time_limit"
+    t.integer "memory_limit"
+    t.integer "solved_count"
+    t.integer "submitted_count"
+    t.integer "ac_count"
+    t.integer "testcases_count"
+    t.boolean "secret"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.string "name"
+    t.integer "verdict"
+    t.integer "time"
+    t.integer "memory"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.text "code"
+    t.string "language"
+    t.integer "point"
+    t.integer "length"
+    t.integer "verdict"
+    t.integer "time"
+    t.integer "memory"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"

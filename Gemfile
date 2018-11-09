@@ -15,6 +15,10 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'bootsnap'
+gem 'sidekiq'
+gem 'sidetiq'
+gem 'sinatra', require: false
+gem 'redis-namespace'
 
 group :development, :test do
   gem 'byebug', platform: :mri
