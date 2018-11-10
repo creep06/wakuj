@@ -10,11 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_09_044039) do
+ActiveRecord::Schema.define(version: 2018_11_10_065920) do
 
   create_table "accepteds", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "problem_id"
   end
 
   create_table "problems", force: :cascade do |t|
@@ -39,6 +41,7 @@ ActiveRecord::Schema.define(version: 2018_11_09_044039) do
     t.integer "memory"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "submission_id"
   end
 
   create_table "submissions", force: :cascade do |t|
@@ -51,6 +54,8 @@ ActiveRecord::Schema.define(version: 2018_11_09_044039) do
     t.integer "memory"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "problem_id"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
