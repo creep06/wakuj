@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
 	root	'static_pages#home'
 	get		'/help',	to:	'static_pages#help'
@@ -8,7 +10,9 @@ Rails.application.routes.draw do
 	get		'/login',	to:	'sessions#new'
 	post	'/login',	to:	'sessions#create'
 	delete	'/logout',	to:	'sessions#destroy'
+	post	'/result',	to:	'results#create'
 	resources :users
 	resources :problems
 	resources :submissions
+	mount Sidekiq::Web => '/sidekiq'
 end
