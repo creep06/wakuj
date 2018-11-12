@@ -1,2 +1,20 @@
-<h1>Submissions#show</h1>
-<p>Find me in app/views/submissions/show.html.erb</p>
+<% provide(:title, "提出 ##{@submission.id}") %>
+<h1>提出 #<%= @submission.id %></h1>
+
+<ul>
+	<li>コード: 準備中</li>
+	<li>言語: <%= @submission.language %></li>
+	<li>判定: <%= @submission.verdict %></li>
+	<li>実行時間: <%= @submission.time %></li>
+	<li>使用メモリ: <%= @submission.memory %></li>
+	<li>コード長: <%= @submission.length %></li>
+</ul>
+
+<% @results.each do |r| %>
+	<ul>
+		<li>名前: <%= r.name %></li>
+		<li>判定: <%= r.verdict %></li>
+		<li>実行時間: <%= r.time %></li>
+		<li>使用メモリ: <%= r.memory %></li>
+	</ul>
+<% end %>

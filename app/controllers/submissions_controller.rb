@@ -4,6 +4,7 @@ class SubmissionsController < ApplicationController
 
 	def show
 		@submission = Submission.find(params[:id])
+		@results = Result.where(submission_id: params[:id])
 	end
 
 	def create
