@@ -14,8 +14,12 @@
 		<%= f.label "コード" %>
 		<%= f.text_area :code, size: "20x10", class: 'form-control' %>
 
-		<!-- とりあえずC++に限定しておく 後でプルダウンメニュー作って -->
-		<%= f.hidden_field :language, value: "cpp" %>
+		<%= f.label "言語" %>
+		<%= f.select :language, [
+			[language_name("cpp"), "cpp"],
+			[language_name("py"), "py"],
+			[language_name("rb"), "rb"]
+		] %>
 		<%= f.hidden_field :user_id, value: session[:user_id] %>
 		<%= f.hidden_field :problem_id, value: @problem.id %>
 

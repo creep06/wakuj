@@ -23,7 +23,7 @@
 		<td><%= @submission.verdict=="AC" ? @problem.point : 0 %></td>
 	</tr> <tr>
 		<th>言語</th>
-		<td><%= @submission.language %></td>
+		<td><%= language_name(@submission.language) %></td>
 	</tr> <tr>
 		<th>実行時間</th>
 		<td><%= @submission.time %></td>

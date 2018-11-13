@@ -11,7 +11,28 @@ module ApplicationHelper
 	end
 
 	# created_atなんかを表示する時に末尾の+0900を消す
-	def simple_time(time)
+	def simple_time time
 		time.strftime("%Y-%m-%d %H:%M:%S ")
 	end
+
+	# 言語名をちゃんとしたものに変換
+	def language_name str
+		case str
+		when "c" then "C11 GCC8.2"
+		when "cpp" then "C++17 GCC8.2"
+		when "py" then "Python3 3.7"
+		when "rb" then "Ruby 2.5"
+		end
+	end
+
+	# 言語名の略称
+	def language_name_s str
+		case str
+		when "c" then "C"
+		when "cpp" then "C++"
+		when "py" then "Python3"
+		when "rb" then "Ruby"
+		end
+	end
+
 end

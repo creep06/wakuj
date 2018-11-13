@@ -27,7 +27,7 @@
 				<td><%= link_to u.name, u %></td>
 				<td><%= s.verdict %></td>
 				<td><%= (s.verdict=="AC" ? p.point : 0) %></td>
-				<td><%= s.language %></td>
+				<td><%= language_name_s(s.language) %></td>
 				<td><%= s.time %>ms</td>
 				<td><%= s.memory %>KB</td>
 				<td><%= s.length %></td>
