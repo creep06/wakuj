@@ -1,20 +1,60 @@
-<% provide(:title, "提出 ##{@submission.id}") %>
+<% provide(:title, "##{@submission.id}") %>
 <h1>提出 #<%= @submission.id %></h1>
 
-<ul>
-	<li>コード: 準備中</li>
-	<li>言語: <%= @submission.language %></li>
-	<li>判定: <%= @submission.verdict %></li>
-	<li>実行時間: <%= @submission.time %></li>
-	<li>使用メモリ: <%= @submission.memory %></li>
-	<li>コード長: <%= @submission.length %></li>
-</ul>
+<textarea cols="40" id="code" name="code" rows="20" readonly="readonly">
+<%= @submission.code %>
+</textarea>
 
-<% @results.each do |r| %>
-	<ul>
-		<li>名前: <%= r.name %></li>
-		<li>判定: <%= r.verdict %></li>
-		<li>実行時間: <%= r.time %></li>
-		<li>使用メモリ: <%= r.memory %></li>
-	</ul>
+<table class="table table-bordered">
+	<tr>
+		<th class="col-xs-1">提出日時</th>
+		<td class="col-xs-2"><%= simple_time(@submission.created_at) %></td>
+	</tr> <tr>
+		<th>問題</th>
+		<td><%= link_to @problem.name, @problem %></td>
+	</tr> <tr>
+		<th>提出ユーザー</th>
+		<td><%= link_to @user.name, @user %></td>
+	</tr> <tr>
+		<th>判定</th>
+		<td><%= @submission.verdict %></td>
+	</tr> <tr>
+		<th>得点</th>
+		<td><%= @submission.verdict=="AC" ? @problem.point : 0 %></td>
+	</tr> <tr>
+		<th>言語</th>
+		<td><%= @submission.language %></td>
+	</tr> <tr>
+		<th>実行時間</th>
+		<td><%= @submission.time %></td>
+	</tr> <tr>
+		<th>メモリ</th>
+		<td><%= @submission.memory %></td>
+	</tr> <tr>
+		<th>コード長</th>
+		<td><%= @submission.length %></td>
+	</tr>
+</table>
+
+<% if @submission.verdict != "CE" %>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th class="col-xs-4">テストケース名</th>
+				<th class="col-xs-2">判定</th>
+				<th class="col-xs-4">実行時間</th>
+				<th class="col-xs-4">メモリ</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @results.each do |r| %>
+				<tr class= <%= r.verdict=="AC" ? "success" : "danger" %> >
+					<td>i<%= r.name %>.txt</td>
+					<td><%= r.verdict %></td>
+					<td><%= r.time %>ms</td>
+					<td><%= r.memory %>KB</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 <% end %>

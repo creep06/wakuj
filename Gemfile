@@ -16,6 +16,7 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'bootsnap'
 
+gem 'rails-i18n'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'redis-namespace'

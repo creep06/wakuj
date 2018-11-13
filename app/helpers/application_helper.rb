@@ -9,4 +9,9 @@ module ApplicationHelper
 			page_title + " | " + base_title # 文字列結合
 		end
 	end
+
+	# created_atなんかを表示する時に末尾の+0900を消す
+	def simple_time(time)
+		time.strftime("%Y-%m-%d %H:%M:%S ")
+	end
 end

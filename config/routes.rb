@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 	post	'/login',	to:	'sessions#create'
 	delete	'/logout',	to:	'sessions#destroy'
 	post	'/result',	to:	'results#create'
+	post	'/judged',	to:	'submissions#update'
 	resources :users
 	resources :problems
 	resources :submissions

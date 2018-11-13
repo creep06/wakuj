@@ -1,11 +1,27 @@
-<% provide(:title, '問題') %>
+<% provide(:title, "問題") %>
 <h1>問題</h1>
 
 <%= will_paginate %>
 
-<ul class="problems">
-	<%= render @problems %>
-</ul>
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th class="col-xs-4">名前</th>
+			<th class="col-xs-2">得点</th>
+			<th class="col-xs-2">解いた人数</th>
+			<th class="col-xs-2">正答率</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @problems.each do |p| %>
+			<tr>
+				<td><%= link_to p.name, p %></td>
+				<td><%= p.point %></td>
+				<td><%= p.solved_count %></td>
+				<td><%= p.ac_count*100 / [p.submitted_count, 1].max %>%</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
 
 <%= will_paginate %>
-
