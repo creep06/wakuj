@@ -21,15 +21,17 @@
 		<% @submissions.each do |s| %>
 			<% p = Problem.find(s.problem_id) %>
 			<% u = User.find(s.user_id) %>
+			<% ac = (s.verdict=="AC") %>
+			<% emp = (s.verdict=="CE" || s.verdict=="Pending") %>
 			<tr>
 				<td><%= link_to simple_time(s.created_at), s %></td>
 				<td><%= link_to p.name, p %></td>
 				<td><%= link_to u.name, u %></td>
-				<td><%= s.verdict %></td>
-				<td><%= (s.verdict=="AC" ? p.point : 0) %></td>
+				<td><%= image_tag "#{s.verdict}.png", size: "20x20" %></td>
+				<td><%= p.point %></td>
 				<td><%= language_name_s(s.language) %></td>
-				<td><%= s.time %>ms</td>
-				<td><%= s.memory %>KB</td>
+				<td><%= !emp ? s.time.to_s+"ms" : "-" %></td>
+				<td><%= !emp ? s.memory.to_s+"KB" : "-" %></td>
 				<td><%= s.length %></td>
 			</tr>
 		<% end %>

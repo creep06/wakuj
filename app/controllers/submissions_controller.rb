@@ -1,7 +1,7 @@
 class SubmissionsController < ApplicationController
 	protect_from_forgery :except => [:update]
 	def index
-		@submissions = Submission.paginate(page: params[:page])
+		@submissions = Submission.paginate(page: params[:page], per_page: 20)
 	end
 
 	def show

@@ -6,6 +6,7 @@
 </textarea>
 
 <table class="table table-bordered">
+	<% emp = (@submission.verdict=="CE" || @submission.verdict=="Pending") %>
 	<tr>
 		<th class="col-xs-1">提出日時</th>
 		<td class="col-xs-2"><%= simple_time(@submission.created_at) %></td>
@@ -17,7 +18,7 @@
 		<td><%= link_to @user.name, @user %></td>
 	</tr> <tr>
 		<th>判定</th>
-		<td><%= @submission.verdict %></td>
+		<td><%= image_tag "#{@submission.verdict}.png", size: "20x20" %> <%= @submission.verdict %></td>
 	</tr> <tr>
 		<th>得点</th>
 		<td><%= @submission.verdict=="AC" ? @problem.point : 0 %></td>
@@ -26,10 +27,10 @@
 		<td><%= language_name(@submission.language) %></td>
 	</tr> <tr>
 		<th>実行時間</th>
-		<td><%= @submission.time %></td>
+		<td><%= !emp ? @submission.time.to_s+"ms" : "-" %></td>
 	</tr> <tr>
 		<th>メモリ</th>
-		<td><%= @submission.memory %></td>
+		<td><%= !emp ? @submission.memory.to_s+"KB" : "-" %></td>
 	</tr> <tr>
 		<th>コード長</th>
 		<td><%= @submission.length %></td>
@@ -50,7 +51,7 @@
 			<% @results.each do |r| %>
 				<tr class= <%= r.verdict=="AC" ? "success" : "danger" %> >
 					<td>i<%= r.name %>.txt</td>
-					<td><%= r.verdict %></td>
+					<td><%= image_tag "#{r.verdict}.png", size: "20x20" %> <%= r.verdict %></td>
 					<td><%= r.time %>ms</td>
 					<td><%= r.memory %>KB</td>
 				</tr>
