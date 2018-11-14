@@ -8,7 +8,11 @@ class JudgeWorker
 		pro = Problem.find(sub.problem_id)
 		user = User.find(sub.user_id)
 
-		uri = URI.parse("http://wakuj-judge.us-east-2.elasticbeanstalk.com/judge")
+		if Rails.env == "production"
+			uri = URI.parse("http://wakuj-judge.us-east-2.elasticbeanstalk.com/judge")
+		else
+			uri = URI.parse("localhost:3001/judge")
+		end
 		http = Net::HTTP.new(uri.host, uri.port)
 		http.use_ssl = false
 		http.verify_mode = OpenSSL::SSL::VERIFY_NONE

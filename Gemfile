@@ -20,6 +20,7 @@ gem 'rails-i18n'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'redis-namespace'
+gem 'unicorn'
 
 gem 'mathjax-rails'
 
