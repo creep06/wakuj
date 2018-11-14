@@ -28,7 +28,7 @@
 				<td><%= link_to p.name, p %></td>
 				<td><%= link_to u.name, u %></td>
 				<td><%= image_tag "#{s.verdict}.png", size: "20x20" %></td>
-				<td><%= p.point %></td>
+				<td><%= s.point %></td>
 				<td><%= language_name_s(s.language) %></td>
 				<td><%= !emp ? s.time.to_s+"ms" : "-" %></td>
 				<td><%= !emp ? s.memory.to_s+"KB" : "-" %></td>

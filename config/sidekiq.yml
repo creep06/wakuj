@@ -1,0 +1,8 @@
+:verbose: true
+:pidfile: ./tmp/pids/sidekiq.pid
+:logfile: ./log/sidekiq.log
+# worker process数
+# ジャッジサーバーの性能的にかなり少なめにした方が良い
+:concurrency: 1
+:queues: # 処理するキュー名
+  - default

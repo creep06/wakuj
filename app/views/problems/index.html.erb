@@ -14,7 +14,13 @@
 	</thead>
 	<tbody>
 		<% @problems.each do |p| %>
-			<tr>
+			<tr class = <%=
+				if logged_in? && Accepted.exists?(user_id: session[:user_id], problem_id: p.id)
+					"success"
+				else
+					"active"
+				end
+			%> >
 				<td><%= link_to p.name, p %></td>
 				<td><%= p.point %></td>
 				<td><%= p.solved_count %></td>

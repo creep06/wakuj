@@ -1,12 +1,63 @@
 <% provide(:title, @problem.name) %>
+<h1><%= @problem.name %></h1>
+<div align="center">
+実行時間制限: <%= @problem.time_limit %>ms <br>
+メモリ制限: <%= @problem.memory_limit %>MB <br>
+得点: <%= @problem.point %> <br> <br>
+</div>
 
-<h3> <%= @problem.name %> </h3>
-実行時間制限:<%= @problem.time_limit %>ms <br>
-メモリ制限:<%= @problem.memory_limit %>MB <br>
-得点:<%= @problem.point %> <br> <br>
+<h4>問題</h4>
+<p><%= @problem.statement %></p><br>
 
-<h4> 問題 </h4>
-<%= @problem.statement %> <br> <br>
+
+<h4>制約</h4>
+<p><%= @problem.constraint %></p><br>
+
+
+<!-- うわっ…ここの実装、ヤバすぎ…？ -->
+
+<% if @problem.sample1i.present? %>
+	<p>
+	<h6>入力例1</h6>
+	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
+		<%= simple_format(h(@problem.sample1i)) %>
+	</div>
+
+	<h6>出力例1</h6>
+	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
+		<%= simple_format(h(@problem.sample1o)) %>
+	</div>
+	</p><br>
+<% end %>
+
+<% if @problem.sample2i.present? %>
+	<p>
+	<h6>入力例2</h6>
+	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
+		<%= simple_format(h(@problem.sample2i)) %>
+	</div>
+
+	<h6>出力例2</h6>
+	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
+		<%= simple_format(h(@problem.sample2o)) %>
+	</div>
+	</p><br>
+<% end %>
+
+<% if @problem.sample3i.present? %>
+	<p>
+	<h6>入力例3</h6>
+	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
+		<%= simple_format(h(@problem.sample3i)) %>
+	</div>
+
+	<h6>出力例3</h6>
+	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
+		<%= simple_format(h(@problem.sample3o)) %>
+	</div>
+	</p><br>
+<% end %>
+
 
 <% if logged_in? %>
 	<%= form_for(@submission) do |f| %>

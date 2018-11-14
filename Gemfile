@@ -21,6 +21,8 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'redis-namespace'
 
+gem 'mathjax-rails'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'sqlite3'
