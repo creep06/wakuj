@@ -12,9 +12,9 @@ Problem.create!(name: "Hello Hello",
 				statement: "自然数$n$が与えられます。\"Hello\"と$n$回出力してください。各Helloの直後には改行を入れてください。",
 				constraint: "$1 \\leq n \\leq 10$",
 				sample1i: "1",
-				sample1o: "Hello",
+				sample1o: "Hello\n",
 				sample2i: "3",
-				sample2o: "Hello\nHello\nHello")
+				sample2o: "Hello\nHello\nHello\n")
 
 Problem.create!(name: "Sum Of The Natural Numbers",
 				point: 100,
