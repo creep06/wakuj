@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	before_action :admin_user, only: :destroy
 
 	def index
-		@users = User.paginate(page: params[:page], per_page: 20)
+		@users = Kaminari.paginate_array(User.all.sort_by{|u| -u.point}).page(params[:page]).per(20)
 	end
 
 	def show

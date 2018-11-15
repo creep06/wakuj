@@ -1,7 +1,7 @@
 <% provide(:title, "提出一覧") %>
 <h1>提出一覧</h1>
 
-<%= will_paginate %>
+<%= paginate @submissions %>
 
 <table class="table table-bordered table-striped">
 	<thead>
@@ -38,4 +38,4 @@
 	</tbody>
 </table>
 
-<%= will_paginate %>
+<%= paginate @submissions %>
