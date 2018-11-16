@@ -1,4 +1,31 @@
 <% provide(:title, "ヘルプ") %>
 <h1>ヘルプ</h1>
-<p> 準備中！
+
+<h3>よくありそうな質問</h3><br>
+<h4>・提出の判定のアイコンの意味は？</h4>
+<p>
+<%= image_tag "AC.png", size: "20x20" %>
+AC: Accepted<br>
+全てのテストケースに正解したことを表します。<br>
+<%= image_tag "WA.png", size: "20x20" %>
+WA: Wrong Answer<br>
+間違った答えを出力した(または何も出力しなかった)ことを表します。<br>
+<%= image_tag "TLE.png", size: "20x20" %>
+TLE: Time Limit Exceeded<br>
+プログラムが問題の実行時間制限以内に終了しなかったことを表します。<br>
+<!-- MLEは未実装
+MLE: Memory Limit Exceeded
+プログラムが問題のメモリ制限を超えるメモリを使用したことを表します。
+-->
+<%= image_tag "RE.png", size: "20x20" %>
+RE: Runtime Error<br>
+実行時エラーが発生したことを表します。<br>
+配列の範囲外アクセスやスタックオーバーフローなどが主な例です。<br>
+<%= image_tag "CE.png", size: "20x20" %>
+CE: Compilation Error<br>
+コンパイル言語において、コンパイルに失敗したことを表します。<br>
+<%= image_tag "Pending.png", size: "20x20" %>
+Pending<br>
+ジャッジサーバーがその提出のジャッジをするのを待っている状態を表します。<br>
+複数のユーザーがほぼ同時に提出した場合、早く提出されたものから順番にジャッジされるため、ジャッジ開始まで多少時間がかかる場合があります。
 </p>

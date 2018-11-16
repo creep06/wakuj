@@ -35,4 +35,16 @@ module ApplicationHelper
 		end
 	end
 
+	# 判定の正式名称
+	def verdict_name str
+		case str
+		when "AC" then "Accepted"
+		when "WA" then "Wrong Answer"
+		when "CE" then "Compilation Error"
+		when "TLE" then "Time Limit Exceeded"
+		when "MLE" then "Memory Limit Exceeded"
+		when "RE" then "Runtime Error"
+		when "Pending" then "Pending"
+		end
+	end
 end

@@ -30,8 +30,8 @@
 				<td><%= image_tag "#{s.verdict}.png", size: "20x20" %></td>
 				<td><%= s.point %></td>
 				<td><%= language_name_s(s.language) %></td>
-				<td><%= !emp ? s.time.to_s+"ms" : "-" %></td>
-				<td><%= !emp ? s.memory.to_s+"KB" : "-" %></td>
+				<td><%= emp ? "-" : s.time.to_s + " ms" %></td>
+				<td><%= emp ? "-" : s.memory.to_s + " KB" %></td>
 				<td><%= s.length %></td>
 			</tr>
 		<% end %>

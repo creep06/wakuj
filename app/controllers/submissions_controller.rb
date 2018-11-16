@@ -1,7 +1,7 @@
 class SubmissionsController < ApplicationController
 	protect_from_forgery :except => [:update]
 	def index
-		@submissions = Kaminari.paginate_array(Submission.all.reverse).page(params[:page]).per(10)
+		@submissions = Kaminari.paginate_array(Submission.all.reverse).page(params[:page]).per(20)
 	end
 
 	def show
