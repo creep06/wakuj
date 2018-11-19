@@ -14,9 +14,7 @@ class SubmissionsController < ApplicationController
 	def create
 		@submission = Submission.new(submission_params)
 		# コード長を保存しとく
-		# TODO
-		# 改行が2文字扱いになってるけど後で1文字扱いにしたい
-		@submission.length = @submission.code.length
+		@submission.length = @submission.code.length - @submission.code.count("\n")
 
 		if @submission.save
 			# ユーザーと問題のsubmittedをインクリメント
