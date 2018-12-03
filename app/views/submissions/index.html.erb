@@ -1,37 +1,37 @@
-<% provide(:title, "提出一覧") %>
+<% provide(:title, '提出一覧') %>
 <h1>提出一覧</h1>
 
 <%= paginate @submissions %>
 
-<table class="table table-bordered table-striped">
+<table class='table table-bordered table-striped'>
 	<thead>
 		<tr>
-			<th class="col-xl-2">提出日時</th>
-			<th class="col-xs-2">問題</th>
-			<th class="col-xs-2">ユーザー</th>
-			<th class="col-xs-1">判定</th>
-			<th class="col-xs-1">得点</th>
-			<th class="col-xs-1">言語</th>
-			<th class="col-xs-1">実行時間</th>
-			<th class="col-xs-1">メモリ</th>
-			<th class="col-xs-1">コード長</th>
+			<th class='col-xl-2'>提出日時</th>
+			<th class='col-xs-2'>問題</th>
+			<th class='col-xs-2'>ユーザー</th>
+			<th class='col-xs-1'>判定</th>
+			<th class='col-xs-1'>得点</th>
+			<th class='col-xs-1'>言語</th>
+			<th class='col-xs-1'>実行時間</th>
+			<th class='col-xs-1'>メモリ</th>
+			<th class='col-xs-1'>コード長</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @submissions.each do |s| %>
 			<% p = Problem.find(s.problem_id) %>
 			<% u = User.find(s.user_id) %>
-			<% ac = (s.verdict=="AC") %>
-			<% emp = (s.verdict=="CE" || s.verdict=="Pending") %>
+			<% ac = (s.verdict=='AC') %>
+			<% emp = (s.verdict=='CE' || s.verdict=='Pending') %>
 			<tr>
 				<td><%= link_to simple_time(s.created_at), s %></td>
 				<td><%= link_to p.name, p %></td>
 				<td><%= link_to u.name, u %></td>
-				<td><%= image_tag "#{s.verdict}.png", size: "20x20" %></td>
+				<td><%= image_tag "/images/#{s.verdict}.png", size: '20x20' %></td>
 				<td><%= s.point %></td>
 				<td><%= language_name_s(s.language) %></td>
-				<td><%= emp ? "-" : s.time.to_s + " ms" %></td>
-				<td><%= emp ? "-" : s.memory.to_s + " KB" %></td>
+				<td><%= emp ? '-' : s.time.to_s + ' ms' %></td>
+				<td><%= emp ? '-' : s.memory.to_s + ' KB' %></td>
 				<td><%= s.length %></td>
 			</tr>
 		<% end %>

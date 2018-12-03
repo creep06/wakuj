@@ -16,7 +16,7 @@ new Vue({
 		var that = this
 		// とりあえず1回更新
 		var sub_renew = function() {
-			axios.get(`srenew?id=${submission_id}.json`)
+			axios.get(`/submissions/srenew?id=${submission_id}.json`)
 				.then(res2 => {
 					that.verdict = res2.data.verdict
 					that.time = res2.data.time
@@ -28,7 +28,7 @@ new Vue({
 		if (this.verdict != 'Pending') return 0
 		// ジャッジ終了までgetしまくる
 		this.interval = setInterval(function() {
-			axios.get(`renew?id=${submission_id}.json`)
+			axios.get(`/submissions/renew?id=${submission_id}.json`)
 				.then(res => {
 					that.results = res.data
 				})
