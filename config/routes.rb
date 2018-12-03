@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-	get 'results/create'
+	get		'results/create'
 	root	'static_pages#home'
 	get		'/help',	to:	'static_pages#help'
 	get		'/about',	to:	'static_pages#about'
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 	delete	'/logout',	to:	'sessions#destroy'
 	post	'/result',	to:	'results#create'
 	post	'/judged',	to:	'submissions#update'
+	get		'submissions/renew',	to:	'submissions#renew'
 	mathjax 'mathjax'
 	resources :users
 	resources :problems

@@ -1,5 +1,6 @@
 class SubmissionsController < ApplicationController
 	protect_from_forgery :except => [:update]
+
 	def index
 		@submissions = Kaminari.paginate_array(Submission.all.reverse).page(params[:page]).per(20)
 	end
@@ -9,6 +10,12 @@ class SubmissionsController < ApplicationController
 		@problem = Problem.find(@submission.problem_id)
 		@user = User.find(@submission.user_id)
 		@results = Result.where(submission_id: params[:id])
+	end
+
+	# resultのリアルタイム表示用
+	def renew
+		@results = Result.where(submission_id: params[:id])
+		render json: @results
 	end
 
 	def create
@@ -25,6 +32,7 @@ class SubmissionsController < ApplicationController
 			# sidekiqのキューにidを追加してジャッジを待つ
 			JudgeWorker.perform_async(@submission.id)
 			# リダイレクト
+			# ajaxの実装が出来たらflashは要らないかも
 			flash[:success] = "ジャッジ終了までお待ち下さい"
 			redirect_to @submission
 		else

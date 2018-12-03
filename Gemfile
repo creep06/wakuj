@@ -24,6 +24,7 @@ gem 'redis-namespace'
 gem 'unicorn'
 
 gem 'mathjax-rails'
+gem 'webpacker', github: "rails/webpacker"
 
 group :development, :test do
   gem 'byebug', platform: :mri

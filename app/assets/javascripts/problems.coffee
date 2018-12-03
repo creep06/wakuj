@@ -8,7 +8,7 @@ $ ->
 
 loadMathJax = ->
   window.MathJax = null
-  $.getScript "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML", ->
+  $.getScript "//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML", ->
     MathJax.Hub.Config
       showMathMenu: false
       tex2jax:

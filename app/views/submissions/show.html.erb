@@ -1,3 +1,7 @@
+<script>
+	var submission_id = <%= @submission.id %>
+</script>
+
 <% provide(:title, "##{@submission.id}") %>
 <h1>提出 #<%= @submission.id %></h1>
 
@@ -8,8 +12,8 @@
 <table class="table table-bordered">
 	<% emp = (@submission.verdict=="CE" || @submission.verdict=="Pending") %>
 	<tr>
-		<th class="col-xs-1">提出日時</th>
-		<td class="col-xs-2"><%= simple_time(@submission.created_at) %></td>
+		<th class="col-xs-4">提出日時</th>
+		<td class="col-xs-8"><%= simple_time(@submission.created_at) %></td>
 	</tr> <tr>
 		<th>問題</th>
 		<td><%= link_to @problem.name, @problem %></td>
@@ -37,25 +41,26 @@
 	</tr>
 </table>
 
+
 <% if @submission.verdict != "CE" %>
-	<table class="table table-bordered">
+	<table id="results_view" class="table table-bordered">
 		<thead>
 			<tr>
 				<th class="col-xs-4">テストケース名</th>
 				<th class="col-xs-2">判定</th>
-				<th class="col-xs-4">実行時間</th>
-				<th class="col-xs-4">メモリ</th>
+				<th class="col-xs-3">実行時間</th>
+				<th class="col-xs-3">メモリ</th>
 			</tr>
 		</thead>
 		<tbody>
-			<% @results.each do |r| %>
-				<tr class= <%= r.verdict=="AC" ? "success" : "danger" %> >
-					<td>i<%= r.name %>.txt</td>
-					<td><%= image_tag "#{r.verdict}.png", size: "20x20" %> <%= r.verdict %></td>
-					<td><%= r.time %>ms</td>
-					<td><%= r.memory %>KB</td>
-				</tr>
-			<% end %>
+			<tr v-for="result in results" v-bind:class="[result.verdict === 'AC' ? 'success' : 'danger']">
+				<td>i{{ result.name }}.txt</td>
+				<td><img v-bind:src=`/assets/${result.verdict}.png` width="20" height="20"> {{ result.verdict }}</td>
+				<td>{{ result.time }} ms</td>
+				<td>{{ result.memory }} KB</td>
+			</tr>
 		</tbody>
 	</table>
 <% end %>
+
+<%= javascript_pack_tag 'results_view' %>

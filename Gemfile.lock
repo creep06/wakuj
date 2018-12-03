@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/rails/webpacker.git
+  revision: f46bd639220948a1c0dccf14dc86e243e758cc49
+  specs:
+    webpacker (4.0.0.pre.3)
+      activesupport (>= 4.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 4.2)
+
+GIT
   remote: git://github.com/seuros/capistrano-sidekiq.git
   revision: b0a9e03cdaaf0eb9f668d4ae721a149fd155cdd4
   specs:
@@ -164,6 +173,8 @@ GEM
     rack (2.0.6)
     rack-protection (2.0.4)
       rack
+    rack-proxy (0.6.5)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.1)
@@ -309,6 +320,7 @@ DEPENDENCIES
   uglifier
   unicorn
   web-console
+  webpacker!
 
 BUNDLED WITH
    1.17.1
