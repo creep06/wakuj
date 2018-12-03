@@ -6,14 +6,27 @@ new Vue({
 	data: {
 		results: {},
 		interval: undefined,
-		verdict: def_verdict,
-		point: def_point,
-		time: def_time,
-		memory: def_memory
+		verdict: 'Pending',
+		point: 0,
+		time: '-',
+		memory: '-'
 	},
 
 	mounted: function() {
 		var that = this
+		// とりあえず1回更新
+		var sub_renew = function() {
+			axios.get(`srenew?id=${submission_id}.json`)
+				.then(res2 => {
+					that.verdict = res2.data.verdict
+					that.time = res2.data.time
+					that.memory = res2.data.memory
+					that.point = res2.data.point
+				})
+		}
+		sub_renew
+		if (this.verdict != 'Pending') return 0
+		// ジャッジ終了までgetしまくる
 		this.interval = setInterval(function() {
 			axios.get(`renew?id=${submission_id}.json`)
 				.then(res => {
@@ -22,16 +35,7 @@ new Vue({
 			if (that.interval != undefined && that.results.length === testcases_count) {
 				clearInterval(that.interval)
 				// db更新が間に合わない可能性があるからちょっと待つ
-				// ページ開いた時点でjudge済みだったら待たない
-				setTimeout(function() {
-						axios.get(`srenew?id=${submission_id}.json`)
-						.then(res2 => {
-							console.log(res2.data.verdict)
-							that.verdict = res2.data.verdict
-							that.time = res2.data.time
-							that.memory = res2.data.memory
-							that.point = res2.data.point
-						})}, that.verdict==='Pending' ? 1000 : 0)
+				setTimeout(sub_renew, 1000)
 			}
 		}, 100)
 	}
