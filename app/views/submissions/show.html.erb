@@ -1,19 +1,26 @@
 <script>
+	<% pen = @submission.verdict=='Pending' %>
 	var submission_id = <%= @submission.id %>
+	var testcases_count = <%= @problem.testcases_count %>
+	var def_point = <%= @submission.point %>
+	var def_verdict = <%= @submission.verdict %>
+	var def_time = <%= pen ? '-' : @submission.time %>
+	var def_memory = <%= pen ? '-' : @submission.memory %>
 </script>
 
 <% provide(:title, "##{@submission.id}") %>
 <h1>提出 #<%= @submission.id %></h1>
 
-<textarea cols="40" id="code" name="code" rows="20" readonly="readonly">
+<textarea cols='40' id='code' name='code' rows='20' readonly='readonly'>
 <%= @submission.code %>
 </textarea>
 
-<table class="table table-bordered">
-	<% emp = (@submission.verdict=="CE" || @submission.verdict=="Pending") %>
+<div id='results_view'>
+<table class='table table-bordered'>
+	<% emp = (@submission.verdict=='CE' || @submission.verdict=='Pending') %>
 	<tr>
-		<th class="col-xs-4">提出日時</th>
-		<td class="col-xs-8"><%= simple_time(@submission.created_at) %></td>
+		<th class='col-xs-4'>提出日時</th>
+		<td class='col-xs-8'><%= simple_time(@submission.created_at) %></td>
 	</tr> <tr>
 		<th>問題</th>
 		<td><%= link_to @problem.name, @problem %></td>
@@ -22,19 +29,19 @@
 		<td><%= link_to @user.name, @user %></td>
 	</tr> <tr>
 		<th>判定</th>
-		<td><%= image_tag "#{@submission.verdict}.png", size: "20x20" %> <%= verdict_name(@submission.verdict) %></td>
+		<td><img v-bind:src=`/assets/${verdict}.png` width="20" height="20"> {{ verdict }}</td>
 	</tr> <tr>
 		<th>得点</th>
-		<td><%= @submission.verdict=="AC" ? @problem.point : 0 %></td>
+		<td>{{ point }}</td>
 	</tr> <tr>
 		<th>言語</th>
 		<td><%= language_name(@submission.language) %></td>
 	</tr> <tr>
 		<th>実行時間</th>
-		<td><%= emp ? "-" : @submission.time.to_s + " ms" %></td>
+		<td>{{ time }} ms</td>
 	</tr> <tr>
 		<th>メモリ</th>
-		<td><%= emp ? "-" : @submission.memory.to_s + " KB" %></td>
+		<td>{{ memory }} KB</td>
 	</tr> <tr>
 		<th>コード長</th>
 		<td><%= @submission.length %></td>
@@ -42,14 +49,14 @@
 </table>
 
 
-<% if @submission.verdict != "CE" %>
-	<table id="results_view" class="table table-bordered">
+<% if @submission.verdict != 'CE' %>
+	<table class='table table-bordered'>
 		<thead>
 			<tr>
-				<th class="col-xs-4">テストケース名</th>
-				<th class="col-xs-2">判定</th>
-				<th class="col-xs-3">実行時間</th>
-				<th class="col-xs-3">メモリ</th>
+				<th class='col-xs-4'>テストケース名</th>
+				<th class='col-xs-2'>判定</th>
+				<th class='col-xs-3'>実行時間</th>
+				<th class='col-xs-3'>メモリ</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -62,5 +69,6 @@
 		</tbody>
 	</table>
 <% end %>
+</div>
 
 <%= javascript_pack_tag 'results_view' %>

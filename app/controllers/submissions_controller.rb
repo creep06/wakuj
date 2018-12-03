@@ -14,8 +14,14 @@ class SubmissionsController < ApplicationController
 
 	# resultのリアルタイム表示用
 	def renew
-		@results = Result.where(submission_id: params[:id])
-		render json: @results
+		results = Result.where(submission_id: params[:id])
+		render json: results
+	end
+
+	# submissionの更新用
+	def srenew
+		submission = Submission.find(params[:id])
+		render json: submission
 	end
 
 	def create

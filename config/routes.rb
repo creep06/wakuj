@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 	post	'/result',	to:	'results#create'
 	post	'/judged',	to:	'submissions#update'
 	get		'submissions/renew',	to:	'submissions#renew'
+	get		'submissions/srenew',	to:	'submissions#srenew'
 	mathjax 'mathjax'
 	resources :users
 	resources :problems
