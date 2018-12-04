@@ -22,6 +22,14 @@ new Vue({
 					that.memory = res2.data.memory;
 					that.point = res2.data.point;
 				});
+		},
+
+		try_kill_interval() {
+			if (this.verdict === 'CE' || (this.interval != undefined && this.results.length === testcases_count)) {
+				clearInterval(this.interval);
+				// db更新が間に合わない可能性があるからちょっと待つ
+				setTimeout(this.sub_renew(), 1000);
+			}
 		}
 	},
 
@@ -38,14 +46,10 @@ new Vue({
 					that.results = res.data;
 				});
 		}, 250);
+		this.try_kill_interval();
 	},
 
 	updated: function() {
-		console.log('更新(^_-)');
-		if (this.verdict === 'CE' || (this.interval != undefined && this.results.length === testcases_count)) {
-			clearInterval(this.interval);
-			// db更新が間に合わない可能性があるからちょっと待つ
-			setTimeout(this.sub_renew(), 1000);
-		}
+		this.try_kill_interval();
 	}
 })
