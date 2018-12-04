@@ -12,31 +12,39 @@ new Vue({
 		memory: '-'
 	},
 
-	mounted: function() {
-		var that = this
-		// とりあえず1回更新
-		var sub_renew = function() {
+	methods: {
+		sub_renew() {
+			var that = this
 			axios.get(`/submissions/srenew?id=${submission_id}.json`)
 				.then(res2 => {
-					that.verdict = res2.data.verdict
-					that.time = res2.data.time
-					that.memory = res2.data.memory
-					that.point = res2.data.point
-				})
+					that.verdict = res2.data.verdict;
+					that.time = res2.data.time;
+					that.memory = res2.data.memory;
+					that.point = res2.data.point;
+				});
 		}
-		sub_renew
-		if (this.verdict != 'Pending') return 0
+	},
+
+	beforeMount: function() {
+		this.sub_renew();
+	},
+
+	mounted: function() {
 		// ジャッジ終了までgetしまくる
+		var that = this;
 		this.interval = setInterval(function() {
 			axios.get(`/submissions/renew?id=${submission_id}.json`)
 				.then(res => {
 					that.results = res.data
-				})
-			if (that.interval != undefined && that.results.length === testcases_count) {
-				clearInterval(that.interval)
-				// db更新が間に合わない可能性があるからちょっと待つ
-				setTimeout(sub_renew, 1000)
-			}
-		}, 100)
+				});
+		}, 250);
+	},
+
+	updated: function() {
+		if (this.verdict != 'Pending' || (this.interval != undefined && this.results.length === testcases_count)) {
+			clearInterval(this.interval);
+			// db更新が間に合わない可能性があるからちょっと待つ
+			setTimeout(this.sub_renew(), 1000);
+		}
 	}
 })
