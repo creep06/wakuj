@@ -35,13 +35,14 @@ new Vue({
 		this.interval = setInterval(function() {
 			axios.get(`/submissions/renew?id=${submission_id}.json`)
 				.then(res => {
-					that.results = res.data
+					that.results = res.data;
 				});
 		}, 250);
 	},
 
 	updated: function() {
-		if (this.verdict != 'Pending' || (this.interval != undefined && this.results.length === testcases_count)) {
+		console.log('更新(^_-)');
+		if (this.verdict === 'CE' || (this.interval != undefined && this.results.length === testcases_count)) {
 			clearInterval(this.interval);
 			// db更新が間に合わない可能性があるからちょっと待つ
 			setTimeout(this.sub_renew(), 1000);

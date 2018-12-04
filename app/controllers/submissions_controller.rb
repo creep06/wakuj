@@ -38,8 +38,6 @@ class SubmissionsController < ApplicationController
 			# sidekiqのキューにidを追加してジャッジを待つ
 			JudgeWorker.perform_async(@submission.id)
 			# リダイレクト
-			# ajaxの実装が出来たらflashは要らないかも
-			flash[:success] = "ジャッジ終了までお待ち下さい"
 			redirect_to @submission
 		else
 			flash[:danger] = @submission.errors.full_messages

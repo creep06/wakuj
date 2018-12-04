@@ -27,7 +27,7 @@
 				<td><%= link_to simple_time(s.created_at), s %></td>
 				<td><%= link_to p.name, p %></td>
 				<td><%= link_to u.name, u %></td>
-				<td><%= image_tag "/images/#{s.verdict}.png", size: '20x20' %></td>
+				<td><%= image_tag (s.verdict=='Pending' ? "/images/Pending.gif" : "/images/#{s.verdict}.png"), size: '20x20' %></td>
 				<td><%= s.point %></td>
 				<td><%= language_name_s(s.language) %></td>
 				<td><%= emp ? '-' : s.time.to_s + ' ms' %></td>

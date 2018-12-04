@@ -25,7 +25,7 @@
 		<td><%= link_to @user.name, @user %></td>
 	</tr> <tr>
 		<th>判定</th>
-		<td><img v-bind:src=`/images/${verdict}.png` width="20" height="20"> {{ verdict }}</td>
+		<td><img v-bind:src="[verdict === 'Pending' ? '/images/Pending.gif' : `/images/${verdict}.png`]" width="20" height="20"> {{ verdict }}</td>
 	</tr> <tr>
 		<th>得点</th>
 		<td>{{ point }}</td>
