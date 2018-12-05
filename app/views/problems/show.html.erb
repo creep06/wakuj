@@ -7,11 +7,16 @@
 </div>
 
 <h4>問題</h4>
-<p><%= @problem.statement %></p><br>
-
+<p><%= simple_format(h(@problem.statement)) %></p><br>
 
 <h4>制約</h4>
-<p><%= @problem.constraint %></p><br>
+<p><%= simple_format(h(@problem.constraint)) %></p><br>
+
+<h4>入力</h4>
+<p><%= simple_format(h(@problem.input_desc)) %></p><br>
+
+<h4>出力</h4>
+<p><%= simple_format(h(@problem.output_desc)) %></p><br>
 
 
 <!-- うわっ…ここの実装、ヤバすぎ…？ -->
@@ -54,6 +59,34 @@
 	<h6>出力例3</h6>
 	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
 		<%= simple_format(h(@problem.sample3o)) %>
+	</div>
+	</p><br>
+<% end %>
+
+<% if @problem.sample4i.present? %>
+	<p>
+	<h6>入力例4</h6>
+	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
+		<%= simple_format(h(@problem.sample4i)) %>
+	</div>
+
+	<h6>出力例4</h6>
+	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
+		<%= simple_format(h(@problem.sample4o)) %>
+	</div>
+	</p><br>
+<% end %>
+
+<% if @problem.sample5i.present? %>
+	<p>
+	<h6>入力例5</h6>
+	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
+		<%= simple_format(h(@problem.sample5i)) %>
+	</div>
+
+	<h6>出力例5</h6>
+	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
+		<%= simple_format(h(@problem.sample5o)) %>
 	</div>
 	</p><br>
 <% end %>

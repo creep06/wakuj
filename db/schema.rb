@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_064936) do
+ActiveRecord::Schema.define(version: 2018_12_05_034654) do
 
   create_table "accepteds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2018_11_14_064936) do
     t.text "sample9o"
     t.text "sample10i"
     t.text "sample10o"
+    t.text "input_desc"
+    t.text "output_desc"
   end
 
   create_table "results", force: :cascade do |t|
