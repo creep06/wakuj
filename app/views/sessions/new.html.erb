@@ -16,9 +16,10 @@
 				<span>ログイン状態を保持</span>
 			<% end %>
 
-			<%= f.submit "ログイン", class: "btn btn-primary" %>
+			<%= f.submit "ログイン", class: "btn btn-primary col-md-3" %>
+			<a class='btn btn-default col-md-3 col-md-offset-6' href='/signup', role='button'>新規登録</a>
+
 		<% end %>
 
-		<p>登録がまだの場合は<%= link_to "こちら", signup_path %></p>
 	</div>
 </div>

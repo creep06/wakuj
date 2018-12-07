@@ -5,5 +5,7 @@
 		コーディングスキルを試そう
 	</h2>
 
+<% if not logged_in? %>
 	<%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-primary" %>
+<% end %>
 </div>

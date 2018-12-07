@@ -96,22 +96,29 @@
 
 
 <% if logged_in? %>
-	<%= form_for(@submission) do |f| %>
-		<%= render 'shared/submission_error_messages', object: @submission %>
-		<%= f.label "コード" %>
-		<%= f.text_area :code, size: "20x10", class: 'form-control' %>
+<div class='row'>
+	<div class='col-md-10 col-md-offset-1'>
+		<%= form_for(@submission) do |f| %>
+			<%= render 'shared/submission_error_messages', object: @submission %>
+			<%= f.hidden_field :user_id, value: session[:user_id] %>
+			<%= f.hidden_field :problem_id, value: @problem.id %>
 
-		<%= f.label "言語" %>
-		<%= f.select :language, [
-			[language_name("cpp"), "cpp"],
-			[language_name("py"), "py"],
-			[language_name("rb"), "rb"]
-		] %>
-		<%= f.hidden_field :user_id, value: session[:user_id] %>
-		<%= f.hidden_field :problem_id, value: @problem.id %>
-
-		<%= f.submit "提出", class: "btn btn-primary" %>
-	<% end %>
+			<div class='row'>
+				<div class='col-md-1 text-center'><%= f.label '言語' %></div>
+				<div class='col-md-4'><%= f.select :language, [
+					[language_name("cpp"), "cpp"],
+					[language_name("py"), "py"],
+					[language_name("rb"), "rb"]
+				] %></div>
+			</div>
+			<div class='row'>
+				<div class='col-md-1 text-center'><%= f.label 'コード' %></div>
+				<div class='col-md-11'><%= f.text_area :code, class: 'form-control', size: "20x10" %></div>
+			</div>
+			<%= f.submit "提出", class: "btn btn-primary col-md-2 col-md-offset-10" %>
+		<% end %>
+	</div>
+</div>
 <% end %>
 
 

@@ -36,7 +36,7 @@ Problem.seed(:id) do |p|
 	p.id = 3
 	p.name = 'Minimum Absolute Sum'
 	p.point = 300
-	p.time_limit = 1000
+	p.time_limit = 2000
 	p.memory_limit = 128
 	p.testcases_count = 20
 	p.statement = "
