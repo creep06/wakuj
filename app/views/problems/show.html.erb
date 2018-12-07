@@ -7,16 +7,19 @@
 </div>
 
 <h4>問題</h4>
-<p><%= simple_format(h(@problem.statement)) %></p><br>
+<%= simple_format(h(@problem.statement)) %><br>
 
 <h4>制約</h4>
-<p><%= simple_format(h(@problem.constraint)) %></p><br>
+<%= simple_format(h(@problem.constraint)) %><br>
 
 <h4>入力</h4>
-<p><%= simple_format(h(@problem.input_desc)) %></p><br>
+<p>以下の形式で与えられます。</p>
+<div style="padding: 10px; margin-left: 10px; margin-top: 10px; margin-bottom: 10px; border: 1px solid #555555;">
+	<%= simple_format(h(@problem.input_desc)) %>
+</div><br>
 
 <h4>出力</h4>
-<p><%= simple_format(h(@problem.output_desc)) %></p><br>
+<%= simple_format(h(@problem.output_desc)) %><br>
 
 
 <!-- うわっ…ここの実装、ヤバすぎ…？ -->

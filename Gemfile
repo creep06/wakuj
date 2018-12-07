@@ -25,7 +25,6 @@ gem 'unicorn'
 
 gem 'mathjax-rails'
 gem 'webpacker', github: "rails/webpacker"
-gem 'jquery-datatables-rails'
 gem 'seed-fu'
 
 group :development, :test do
