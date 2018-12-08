@@ -14,9 +14,12 @@
 
 <h4>入力</h4>
 <p>以下の形式で与えられます。</p>
+<var>
 <div style="padding: 10px; margin-left: 10px; margin-top: 10px; margin-bottom: 10px; border: 1px solid #555555;">
 	<%= simple_format(h(@problem.input_desc)) %>
-</div><br>
+</div>
+</var>
+<br>
 
 <h4>出力</h4>
 <%= simple_format(h(@problem.output_desc)) %><br>
@@ -27,70 +30,90 @@
 <% if @problem.sample1i.present? %>
 	<p>
 	<h6>入力例1</h6>
+	<var>
 	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
 		<%= simple_format(h(@problem.sample1i)) %>
 	</div>
+	</var>
 
 	<h6>出力例1</h6>
+	<var>
 	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
 		<%= simple_format(h(@problem.sample1o)) %>
 	</div>
+	</var>
 	</p><br>
 <% end %>
 
 <% if @problem.sample2i.present? %>
 	<p>
 	<h6>入力例2</h6>
+	<var>
 	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
 		<%= simple_format(h(@problem.sample2i)) %>
 	</div>
+	</var>
 
 	<h6>出力例2</h6>
+	<var>
 	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
 		<%= simple_format(h(@problem.sample2o)) %>
 	</div>
+	</var>
 	</p><br>
 <% end %>
 
 <% if @problem.sample3i.present? %>
 	<p>
 	<h6>入力例3</h6>
+	<var>
 	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
 		<%= simple_format(h(@problem.sample3i)) %>
 	</div>
+	</var>
 
 	<h6>出力例3</h6>
+	<var>
 	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
 		<%= simple_format(h(@problem.sample3o)) %>
 	</div>
+	</var>
 	</p><br>
 <% end %>
 
 <% if @problem.sample4i.present? %>
 	<p>
 	<h6>入力例4</h6>
+	<var>
 	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
 		<%= simple_format(h(@problem.sample4i)) %>
 	</div>
+	</var>
 
 	<h6>出力例4</h6>
+	<var>
 	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
 		<%= simple_format(h(@problem.sample4o)) %>
 	</div>
+	</var>
 	</p><br>
 <% end %>
 
 <% if @problem.sample5i.present? %>
 	<p>
 	<h6>入力例5</h6>
+	<var>
 	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
 		<%= simple_format(h(@problem.sample5i)) %>
 	</div>
+	</var>
 
 	<h6>出力例5</h6>
+	<var>
 	<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #AAAAAA;">
 		<%= simple_format(h(@problem.sample5o)) %>
 	</div>
+	</var>
 	</p><br>
 <% end %>
 

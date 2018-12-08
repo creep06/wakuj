@@ -27,6 +27,9 @@ gem 'mathjax-rails'
 gem 'webpacker', github: "rails/webpacker"
 gem 'seed-fu'
 
+gem 'redcarpet'
+gem 'rouge'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'sqlite3'

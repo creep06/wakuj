@@ -7,9 +7,7 @@
 <% provide(:title, "##{@submission.id}") %>
 <h1>提出 #<%= @submission.id %></h1>
 
-<textarea cols='40' id='code' name='code' rows='20' readonly='readonly'>
-<%= @submission.code %>
-</textarea>
+<%= raw highlight_code(@submission.code, @submission.language) %>
 
 <div id='results_view'>
 <table class='table table-bordered'>
