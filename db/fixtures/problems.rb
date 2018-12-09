@@ -3,7 +3,7 @@ Problem.seed(:id) do |p|
 	p.name = "Hello Hello"
 	p.point = 100
 	p.time_limit = 1000
-	p.memory_limit = 8
+	p.memory_limit = 32
 	p.testcases_count = 4
 	p.statement = '自然数$n$が与えられます。"Hello"と$n$回出力してください。'
 	p.constraint = '$1 \leq n \leq 10$'
@@ -20,7 +20,7 @@ Problem.seed(:id) do |p|
 	p.name = 'Sum Of The Natural Numbers'
 	p.point = 100
 	p.time_limit = 1000
-	p.memory_limit = 8
+	p.memory_limit = 32
 	p.testcases_count = 10
 	p.statement = '自然数$n$が与えられます。1から$n$までの自然数の総和を求めてください。'
 	p.constraint = '$1 \leq n \leq 10^9$'
@@ -37,7 +37,7 @@ Problem.seed(:id) do |p|
 	p.name = 'Minimum Absolute Sum'
 	p.point = 300
 	p.time_limit = 2000
-	p.memory_limit = 128
+	p.memory_limit = 32
 	p.testcases_count = 20
 	p.statement = "
 		長さ\$n\$の整数列\$a\$が与えられます。整数\$x\$を自由に決められるとき、
