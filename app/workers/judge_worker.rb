@@ -11,7 +11,7 @@ class JudgeWorker
 		if Rails.env == "development"
 			uri = URI.parse("http://localhost:3001/judge")
 		else
-			uri = URI.parse("http://wakuj-judge.us-east-2.elasticbeanstalk.com/judge")
+			uri = URI.parse("http://api-env.izsnjv9uys.ap-northeast-1.elasticbeanstalk.com/judge")
 		end
 		http = Net::HTTP.new(uri.host, uri.port)
 		http.use_ssl = false
