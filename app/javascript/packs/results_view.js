@@ -1,7 +1,7 @@
-import Vue from 'vue/dist/vue.esm'
-import axios from 'axios'
+import Vue from 'vue/dist/vue.esm';
+import axios from 'axios';
 
-new Vue({
+const app = new Vue({
 	el: '#results_view',
 	data: {
 		results: {},
@@ -9,24 +9,25 @@ new Vue({
 		verdict: 'Pending',
 		point: 0,
 		time: '-',
-		memory: '-'
+		memory: '-',
+		image_path: '/images/Pending.gif'
 	},
 
 	methods: {
-		sub_renew() {
-			var that = this
+		sub_renew: function() {
 			axios.get(`/submissions/srenew?id=${submission_id}.json`)
-				.then(res2 => {
-					that.verdict = res2.data.verdict;
-					that.time = res2.data.time;
-					that.memory = res2.data.memory;
-					that.point = res2.data.point;
+				.then(newresults => {
+					app.verdict = newresults.data.verdict;
+					if (app.verdict !== 'Pending') app.image_path = `/images/${app.verdict}.png`;
+					app.time = newresults.data.time;
+					app.memory = newresults.data.memory;
+					app.point = newresults.data.point;
 				});
 		},
 
-		try_kill_interval() {
-			if (this.verdict === 'CE' || (this.interval != undefined && this.results.length === testcases_count)) {
-				clearInterval(this.interval);
+		try_kill_interval: function() {
+			if (this.verdict === 'CE' || (this.interval !== undefined && this.results.length === testcases_count)) {
+				clearInterval(app.interval);
 				// db更新が間に合わない可能性があるからちょっと待つ
 				setTimeout(this.sub_renew(), 1000);
 			}
@@ -39,6 +40,7 @@ new Vue({
 
 	mounted: function() {
 		// ジャッジ終了までgetしまくる
+		if (this.verdict === 'CE' || (this.interval !== undefined && this.results.length === testcases_count)) return;
 		var that = this;
 		this.interval = setInterval(function() {
 			axios.get(`/submissions/renew?id=${submission_id}.json`)
@@ -52,4 +54,4 @@ new Vue({
 	updated: function() {
 		this.try_kill_interval();
 	}
-})
+});
