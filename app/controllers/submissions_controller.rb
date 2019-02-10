@@ -24,6 +24,30 @@ class SubmissionsController < ApplicationController
 		render json: submission
 	end
 
+	# 全submissionのデータを表示用に整形してからjsonで返す
+	def getall
+		submissions = Submission.all
+		data = []
+		submissions.each{|s|
+			data.push({
+				'submission_id': s.id,
+				'created_at': view_context.simple_time(s.created_at),
+				'problem_id': s.problem_id,
+				'problem_name': Problem.find(s.problem_id).name,
+				'user_id': s.user_id,
+				'user_name': User.find(s.user_id).name,
+				'verdict': s.verdict,
+				'verdict_image_path': (s.verdict=='Pending' ? '/images/Pending.gif' : "/images/#{s.verdict}.png"),
+				'point': (s.verdict=='Pending' ? 0 : s.point),
+				'language': view_context.language_name_s(s.language),
+				'time': (s.verdict=='Pending' || s.verdict=='CE' ? '-' : s.time.to_s + ' ms'),
+				'memory': (s.verdict=='Pending' || s.verdict=='CE' ? '-' : s.memory.to_s + ' KB'),
+				'length': s.length
+			})
+		}
+		render json: data
+	end
+
 	def create
 		@submission = Submission.new(submission_params)
 		# コード長を保存しとく

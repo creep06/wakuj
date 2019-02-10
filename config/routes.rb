@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 	post	'/judged',	to:	'submissions#update'
 	get		'submissions/renew',	to:	'submissions#renew'
 	get		'submissions/srenew',	to:	'submissions#srenew'
+	get		'submissions/getall',	to:	'submissions#getall'
+	get		'problems/getnames',	to:	'problems#getnames'
+	get		'users/getnames',		to:	'users#getnames'
 	mathjax 'mathjax'
 	resources :users
 	resources :problems

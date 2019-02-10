@@ -3,6 +3,22 @@ class UsersController < ApplicationController
 	before_action :correct_user, only: [:edit, :update]
 	before_action :admin_user, only: :destroy
 
+	def getnames
+		users = User.all
+		data = []
+		users.each{|u|
+			data.push(u.name)
+		}
+		result = []
+		data.sort.each{|n|
+			result.push({
+				'id': n,
+				'text': n
+			})
+		}
+		render json: result
+	end
+
 	def index
 		@users = Kaminari.paginate_array(User.all.sort_by{|u| -u.point}).page(params[:page]).per(20)
 	end
