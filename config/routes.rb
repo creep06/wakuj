@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 	get		'submissions/getall',	to:	'submissions#getall'
 	get		'problems/getnames',	to:	'problems#getnames'
 	get		'users/getnames',		to:	'users#getnames'
+	get		'users/getall',			to:	'users#getall'
+	get		'problems/getall',		to:	'problems#getall'
 	mathjax 'mathjax'
 	resources :users
 	resources :problems

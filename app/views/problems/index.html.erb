@@ -1,8 +1,16 @@
 <% provide(:title, "問題") %>
 <h1>問題</h1>
 
-<%= paginate @problems %>
+<div id='problems_table'>
+	<v-client-table :columns='columns' :data='data' :options='options'>
+		<a slot='problem_name' slot-scope='props' :href='`/problems/${props.row.problem_id}`'>
+			{{props.row.problem_name}}
+		</a>
+	</v-client-table>
+</div>
 
+
+<% if false %>
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -29,5 +37,6 @@
 		<% end %>
 	</tbody>
 </table>
+<% end %>
 
-<%= paginate @problems %>
+<%= javascript_pack_tag 'problems_view' %>

@@ -212,3 +212,9 @@ input {
 		border-bottom: 1px solid $gray-lighter;
 	}
 }
+
+/* Vue tables */
+
+.VueTables__sortable {
+  cursor: pointer;
+}

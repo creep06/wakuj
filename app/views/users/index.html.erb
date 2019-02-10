@@ -1,8 +1,16 @@
 <% provide(:title, 'ランキング') %>
 <h1>ランキング</h1>
 
-<%= paginate @users %>
+<div id='users_table'>
+	<v-client-table :columns='columns' :data='data' :options='options'>
+		<a slot='user_name' slot-scope='props' :href='`/users/${props.row.user_id}`'>
+			{{props.row.user_name}}
+		</a>
+	</v-client-table>
+</div>
 
+
+<% if false %>
 <table class="table table-bordered table-striped">
 	<thead>
 		<tr>
@@ -35,5 +43,6 @@
 		<% end %>
 	</tbody>
 </table>
+<% end %>
 
-<%= paginate @users %>
+<%= javascript_pack_tag 'users_view' %>

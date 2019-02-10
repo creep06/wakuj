@@ -24,4 +24,19 @@ class ProblemsController < ApplicationController
 		}
 		render json: result
 	end
+
+	def getall
+		problems = Problem.all
+		data = []
+		problems.each{|p|
+			data.push({
+				'problem_id': p.id,
+				'problem_name': p.name,
+				'point': p.point,
+				'solved_count': p.solved_count,
+				'success_rate': (p.ac_count*100 / [p.submitted_count, 1].max).to_s + ' %'
+			})
+		}
+		render json: data
+	end
 end

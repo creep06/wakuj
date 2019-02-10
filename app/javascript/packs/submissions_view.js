@@ -6,7 +6,7 @@ const VueTables = require('vue-tables-2');
 Vue.use(VueTables.ClientTable);
 
 new Vue({
-	el: '#app',
+	el: '#submissions_table',
 	data: {
 		columns: [
 			'created_at',

@@ -19,6 +19,22 @@ class UsersController < ApplicationController
 		render json: result
 	end
 
+	def getall
+		users = User.all
+		data = []
+		users.each{|u|
+			data.push({
+				'user_name': u.name,
+				'user_id': u.id,
+				'point': u.point,
+				'solved': u.solved,
+				'submitted': u.submitted,
+				'created_at': view_context.simple_time(u.created_at)
+			})
+		}
+		render json: data
+	end
+
 	def index
 		@users = Kaminari.paginate_array(User.all.sort_by{|u| -u.point}).page(params[:page]).per(20)
 	end

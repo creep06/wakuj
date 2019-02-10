@@ -1,7 +1,7 @@
 <% provide(:title, '提出一覧') %>
 <h1>提出一覧</h1>
 
-<div id='app'>
+<div id='submissions_table'>
 	<v-client-table :columns='columns' :data='data' :options='options'>
 		<a slot='created_at' slot-scope='props' :href='`/submissions/${props.row.submission_id}`'>
 			{{props.row.created_at}}
